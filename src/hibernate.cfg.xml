@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+	
+<hibernate-configuration>
+	<session-factory>
+		<!-- 配置SessionFactory：创建Session对象、 Session对象是hibernate中操作数据库的核心对象。 必须的三部分信息： 
+			第一部分： 连接数据库的信息 第二部分： hibernate的可选配置 第三部分： 映射文件的位置 -->
+
+		<!-- 第一部分：连接数据库的信息 -->
+		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="hibernate.connection.url">jdbc:mysql://127.0.0.1:3306/apartment?useSSL=false&amp;characterEncoding=UTF-8&amp;serverTimezone=GMT%2B8</property>
+		<property name="hibernate.connection.username">root</property>
+		<property name="hibernate.connection.password">123456</property>
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+		<!-- 第二部分hibernate的可选配置 -->
+		<!-- 是否显示hibernate生成的SQL语句 -->
+		<property name="hibernate.show_sql">false</property>
+		<!--是否使用格式化输出SQL语句 -->
+		<property name="hibernate.format_sql">fasle</property>
+		<!-- 设置hibernate的连接池供应商 -->
+		<property name="hibernate.connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</property>
+
+        <!-- 把线程和session绑定，从而一个线程只有一个session -->
+        <property name="hibernate.current_session_context_class">thread</property>
+		<!-- 第三部分：映射配置文件的位置 -->
+		<mapping resource="com/house/domain/house.hbm.xml" />
+		<mapping resource="com/house/domain/message.hbm.xml" />
+		<mapping resource="com/house/domain/user.hbm.xml" />
+		<mapping resource="com/house/domain/contact.hbm.xml" /> 
+	</session-factory>
+</hibernate-configuration>

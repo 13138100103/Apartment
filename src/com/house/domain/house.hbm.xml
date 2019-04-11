@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.house.domain">
+	<class name = "House" table="house">
+		<id name="id" column="Id">
+			<generator class="native"></generator>
+		</id>
+		
+		<property name="name" column="name"></property>
+		<property name="area" column="area"></property>
+		<property name="description" column="description"></property>
+		<property name="district" column="district"></property>
+		<property name="price" column="price"></property>
+		<property name="type" column="type"></property>
+		<property name="sale" column="sale"></property>
+		<property name="picture" column="picture"></property>
+		<property name="user" column="user"></property>
+
+
+
+		 <!-- inverse:配置关系是否不维护
+				 		true:	不维护
+				 		false:	维护关系
+				insert属性:
+				性能优化:
+				无论怎么放弃维护,总有一方需要维护(按照默认值来就行)
+				一般的开发中,一的一方放弃维护,多的一方不放弃维护
+		-->
+	<!-- 配置多对一的关系
+			name:一的一方对象的属性名称
+			class:一的一方类的全路径
+			column：多的一方外键名称
+		 -->
+	<!-- 多对多关系 转换为两个一对多 -->
+		<set name="usermessageSet" cascade="all" lazy="false">
+			<!-- 指定关联的外键的列名 -->
+			<key column="houseid"></key>
+			<!-- 指定关联的外键的实体类名 -->
+			<one-to-many class="Message"/>
+		</set>
+		
+
+	</class>
+
+</hibernate-mapping>
